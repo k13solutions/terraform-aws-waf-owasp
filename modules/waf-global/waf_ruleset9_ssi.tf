@@ -4,6 +4,9 @@
 ## Matches request patterns for webroot objects that shouldn't be directly accessible
 
 resource aws_waf_rule detect_ssi {
+  depends_on  = [  
+    aws_waf_byte_match_set.match_ssi,
+  ]
   name        = "${var.waf_prefix}-generic-detect-ssi"
   metric_name = replace("${var.waf_prefix}genericdetectssi", "/[^0-9A-Za-z]/", "")
 

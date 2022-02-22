@@ -5,6 +5,9 @@
 ## local or remote files
 
 resource aws_waf_rule detect_rfi_lfi_traversal {
+  depends_on  = [
+    aws_waf_byte_match_set.match_rfi_lfi_traversal,
+  ]
   name        = "${var.waf_prefix}-generic-detect-rfi-lfi-traversal"
   metric_name = replace("${var.waf_prefix}genericdetectrfilfitraversal", "/[^0-9A-Za-z]/", "")
 

@@ -4,6 +4,9 @@
 ## Matches attempted SQLi patterns in the URI, QUERY_STRING, BODY, COOKIES
 
 resource aws_waf_rule mitigate_sqli {
+  depends_on  = [
+    aws_waf_sql_injection_match_set.sql_injection_match_set,
+  ]
   name        = "${var.waf_prefix}-generic-mitigate-sqli"
   metric_name = replace("${var.waf_prefix}genericmitigatesqli", "/[^0-9A-Za-z]/", "")
 

@@ -4,6 +4,9 @@
 ## Matches attempted XSS patterns in the URI, QUERY_STRING, BODY, COOKIES
 
 resource aws_waf_rule mitigate_xss {
+  depends_on  = [
+    aws_waf_xss_match_set.xss_match_set,
+  ]
   name        = "${var.waf_prefix}-generic-mitigate-xss"
   metric_name = replace("${var.waf_prefix}genericmitigatexss", "/[^0-9A-Za-z]/", "")
 

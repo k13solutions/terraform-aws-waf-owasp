@@ -4,6 +4,10 @@
 ## Enforce the presence of CSRF token in request header
 
 resource aws_waf_rule enforce_csrf {
+  depends_on  = [  
+    aws_waf_byte_match_set.match_csrf_method,
+    aws_waf_size_constraint_set.csrf_token_set,
+  ]
   name        = "${var.waf_prefix}-generic-enforce-csrf"
   metric_name = replace("${var.waf_prefix}genericenforcecsrf", "/[^0-9A-Za-z]/", "")
 

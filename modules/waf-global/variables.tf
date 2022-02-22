@@ -15,6 +15,44 @@ variable admin_remote_ipset {
   description = "List of IPs allowed to access admin pages, ['1.1.1.1/32', '2.2.2.2/32', '3.3.3.3/32']"
 }
 
+variable whitelisted_elastic_ips {
+  type        = list(string)
+  default     = []
+  description = "List of IPs allowed to access admin pages, ['1.1.1.1/32', '2.2.2.2/32', '3.3.3.3/32']"
+}
+
+variable whitelisted_ips {
+  type        = list(string)
+  default     = []
+  description = "List of IPs allowed to access admin pages, ['1.1.1.1/32', '2.2.2.2/32', '3.3.3.3/32']"
+}
+
+/*
+variable whitelisted_user_agent_header {
+  type        = list(string)
+  default     = []
+  description = "Whitelisted user agent headers ['test1','test2']"
+}
+*/
+
+variable whitelisted_user_agent_header {
+  type        = string
+  default     = ""
+  description = "Rule action type. Either BLOCK, ALLOW, or COUNT (useful for testing)"
+}
+
+variable rule_group_blacklist_type {
+  type        = string
+  default     = ""
+  description = "Rule action type. Either BLOCK, ALLOW, or COUNT (useful for testing)"
+}
+
+variable rule_whitelist_type {
+  type        = string
+  default     = "ALLOW"
+  description = "Rule action type. Either BLOCK, ALLOW, or COUNT (useful for testing)"
+}
+
 variable rule_sqli_action {
   type        = string
   default     = "COUNT"

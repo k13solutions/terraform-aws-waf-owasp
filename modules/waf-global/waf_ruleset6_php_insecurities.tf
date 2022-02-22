@@ -4,6 +4,10 @@
 ## Matches request patterns designed to exploit insecure PHP/CGI configuration
 
 resource aws_waf_rule detect_php_insecure {
+  depends_on  = [
+    aws_waf_byte_match_set.match_php_insecure_uri,
+    aws_waf_byte_match_set.match_php_insecure_var_refs,
+  ] 
   name        = "${var.waf_prefix}-generic-detect-php-insecure"
   metric_name = replace("${var.waf_prefix}genericdetectphpinsecure", "/[^0-9A-Za-z]/", "")
 

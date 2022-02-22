@@ -4,6 +4,9 @@
 ## Enforce consistent request hygene, limit size of key elements
 
 resource aws_waf_rule restrict_sizes {
+  depends_on  = [  
+    aws_waf_size_constraint_set.size_restrictions,
+  ]
   name        = "${var.waf_prefix}-generic-restrict-sizes"
   metric_name = replace("${var.waf_prefix}genericrestrictsizes", "/[^0-9A-Za-z]/", "")
 

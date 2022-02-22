@@ -5,6 +5,10 @@
 ## Matches the URI prefix, when the remote IP isn't in the whitelist
 
 resource aws_waf_rule detect_admin_access {
+  depends_on  = [
+    aws_waf_ipset.admin_remote_ipset,
+    aws_waf_byte_match_set.match_admin_url,
+  ]  
   name        = "${var.waf_prefix}-generic-detect-admin-access"
   metric_name = replace("${var.waf_prefix}genericdetectadminaccess", "/[^0-9A-Za-z]/", "")
 
